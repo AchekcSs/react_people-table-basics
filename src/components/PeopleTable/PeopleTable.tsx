@@ -7,6 +7,8 @@ type Props = {
 };
 
 export const PeopleTable = ({ people }: Props) => {
+  const peopleByName = new Map(people.map(person => [person.name, person]));
+
   return (
     <table
       data-cy="peopleTable"
@@ -25,10 +27,13 @@ export const PeopleTable = ({ people }: Props) => {
 
       <tbody>
         {people.map(person => {
-          const mother =
-            people.find(({ name }) => name === person.motherName) || null;
-          const father =
-            people.find(({ name }) => name === person.fatherName) || null;
+          const mother = person.motherName
+            ? peopleByName.get(person.motherName) || null
+            : null;
+
+          const father = person.fatherName
+            ? peopleByName.get(person.fatherName) || null
+            : null;
 
           return (
             <PersonRow

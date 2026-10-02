@@ -4,16 +4,16 @@ import cn from 'classnames';
 import type { Person } from '../../types';
 
 type Props = {
-  person: Person | null;
+  person: Person;
 };
 
 export const PersonLink = ({ person }: Props) => {
   return (
     <Link
-      to={`/people/${person?.slug}`}
-      className={cn({ 'has-text-danger': person?.sex === 'f' })}
+      to={`/people/${person.slug}`}
+      className={cn({ 'has-text-danger': person.sex === 'f' })}
     >
-      {person?.name}
+      {person.name}
     </Link>
   );
 };
